@@ -50,3 +50,16 @@ iris_ranking<- iris_long %>%
   
 print(iris_ranking)  
 ```
+
+-    For each species, for **sepal** and **petal, width** and **length**, how many observations are above the mean?
+
+```{r}
+above_mean<- iris_long %>%
+  dplyr::filter(Size > iris_summary$MeanSize & Species == iris_summary$Species )%>%
+  dplyr::group_by(Species, Trait)%>%
+  dplyr::summarise(Obs_number =  sum(Size > iris_summary$MeanSize ))
+
+
+
+print(above_mean)
+```
