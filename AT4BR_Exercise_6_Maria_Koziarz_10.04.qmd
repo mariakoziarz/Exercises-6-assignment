@@ -11,7 +11,7 @@ library(dplyr)
 library(tidyr)
 ```
 
-## Loading iris dataset
+#### 1) Load the “iris” dataset.
 
 ```{r}
 data("iris")
@@ -19,7 +19,7 @@ data("iris")
 paged_table(iris)
 ```
 
-## Transforming data into the longer format
+#### 2) Transform it to longer
 
 ```{r}
 iris_long<- iris %>%
@@ -28,11 +28,25 @@ iris_long<- iris %>%
 print(iris_long)
 ```
 
-You can add options to executable code like this
+#### 3) Answer the following questions:
+
+-   What is the **mean** length and width of the sepal and petal of each species?
 
 ```{r}
-#| echo: false
-2 * 2
+iris_summary<- iris_long %>%
+  group_by(Species, Trait)%>%
+  summarise(MeanSize = mean(Size))
+print(iris_summary)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+-   What is the **largest** and **widest**, **petal** and **sepal**, of   **virginica** and **versicolor** species?
+
+```{r}
+iris_ranking<- iris_long %>%
+  dplyr::filter(Species %in% c("virginica", "versicolor")) %>%
+  dplyr::group_by(Species, Trait) %>%
+  dplyr::summarise(max = max(Size))
+
+  
+print(iris_ranking)  
+```
