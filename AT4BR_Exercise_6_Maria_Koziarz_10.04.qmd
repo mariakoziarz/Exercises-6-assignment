@@ -7,6 +7,8 @@ editor: visual
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
 library(rmarkdown)
+library(dplyr)
+library(tidyr)
 ```
 
 ## Loading iris dataset
@@ -20,7 +22,10 @@ paged_table(iris)
 ## Transforming data into the longer format
 
 ```{r}
+iris_long<- iris %>%
+  tidyr::pivot_longer(cols= -Species, names_to = "Trait", values_to = "Size")
 
+print(iris_long)
 ```
 
 You can add options to executable code like this
