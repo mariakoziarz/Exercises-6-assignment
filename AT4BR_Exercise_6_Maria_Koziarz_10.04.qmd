@@ -1,0 +1,33 @@
+---
+title: "AT4BR_Exercises_6_Maria_Koziarz_10.04"
+format: html
+editor: visual
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(rmarkdown)
+```
+
+## Loading iris dataset
+
+```{r}
+data("iris")
+
+paged_table(iris)
+```
+
+## Transforming data into the longer format
+
+```{r}
+
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
