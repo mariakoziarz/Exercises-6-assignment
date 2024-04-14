@@ -55,11 +55,12 @@ print(iris_ranking)
 
 ```{r}
 above_mean<- iris_long %>%
-  dplyr::filter(Size > iris_summary$MeanSize & Species == iris_summary$Species )%>%
-  dplyr::group_by(Species, Trait)%>%
-  dplyr::summarise(Obs_number =  sum(Size > iris_summary$MeanSize ))
+  dplyr::left_join(iris_summary, by=c('Species', 'Trait'))%>%
+  dplyr::filter(Size > MeanSize)%>%
+  dplyr::group_by(Species,Trait)%>%
+  dplyr::summarise(aboveMean = n())
 
-
+  
 
 print(above_mean)
 ```
